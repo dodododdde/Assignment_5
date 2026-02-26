@@ -1,0 +1,114 @@
+[
+  {
+    "objectID": "slides.html#overview",
+    "href": "slides.html#overview",
+    "title": "World Development Indicators (2022)",
+    "section": "Overview",
+    "text": "Overview\nIn this presentation, I analyze a 2022 sample of the World Development Indicators (WDI) dataset from the World Bank (World Bank 2022).\nGoals - Load and clean the dataset (wdi.csv) - Explore a few core development indicators - Visualize patterns across countries - Summarize results with a small statistics table"
+  },
+  {
+    "objectID": "slides.html#data-indicators",
+    "href": "slides.html#data-indicators",
+    "title": "World Development Indicators (2022)",
+    "section": "Data + Indicators",
+    "text": "Data + Indicators\nThe dataset contains country-level measurements for 2022.\nFor this mini-analysis, I focus on:\n\nGDP per capita (income level proxy)\nLife expectancy (health outcome)\nUnemployment rate (labor market outcome)\n\nThese are commonly used indicators for comparing development outcomes across countries.\n\n\n((217, 5), (179, 5))"
+  },
+  {
+    "objectID": "slides.html#quick-descriptives",
+    "href": "slides.html#quick-descriptives",
+    "title": "World Development Indicators (2022)",
+    "section": "Quick Descriptives",
+    "text": "Quick Descriptives\nA first step in EDA is checking the distribution and missingness. Below are basic summary statistics for the three key indicators.\n\n\n\n\n\n\n\n\n\ngdp_per_capita\nlife_expectancy\nunemployment_rate\n\n\n\n\ncount\n203.000000\n209.000000\n186.000000\n\n\nmean\n20345.707649\n72.416519\n7.268661\n\n\nstd\n31308.942225\n7.713322\n5.827726\n\n\nmin\n259.025031\n52.997000\n0.130000\n\n\n25%\n2570.563284\n66.782000\n3.500750\n\n\n50%\n7587.588173\n73.514634\n5.537500\n\n\n75%\n25982.630050\n78.475000\n9.455250\n\n\nmax\n240862.182448\n85.377000\n37.852000\n\n\n\n\n\n\n\nInterpretation\nGDP per capita usually has a very wide range across countries.\nLife expectancy varies less than income but still meaningfully.\nUnemployment rates can differ sharply between countries with similar income."
+  },
+  {
+    "objectID": "slides.html#relationship-income-and-health",
+    "href": "slides.html#relationship-income-and-health",
+    "title": "World Development Indicators (2022)",
+    "section": "Relationship: Income and Health",
+    "text": "Relationship: Income and Health\nMany cross-country comparisons show that higher income tends to be associated with higher life expectancy. This is closely related to the classic “Preston curve” idea (Preston 1975).\n\n\n\n\n\n\n\n\n\nDescription\nThe x-axis is log-scaled so both low- and high-income countries are visible.\nThe overall pattern is upward: richer countries tend to have higher life expectancy.\nThere is still large variation, meaning income is not the only factor."
+  },
+  {
+    "objectID": "slides.html#distribution-top-10-by-gdp-per-capita",
+    "href": "slides.html#distribution-top-10-by-gdp-per-capita",
+    "title": "World Development Indicators (2022)",
+    "section": "Distribution: Top 10 by GDP per Capita",
+    "text": "Distribution: Top 10 by GDP per Capita\nNext, I compare the most extreme values by looking at the top 10 countries in GDP per capita.\n\n\n\n\n\n\n\n\n\nDescription\nThis plot highlights how concentrated the right tail of the income distribution is.\nA small set of countries sit far above the global median.\nSummary Table: Key Statistics\nThis table summarizes the same three indicators using common descriptive stats.\n\n\n\n\n\n\n\n\n\ncount\nmean\nstd\nmin\n50%\nmax\n\n\n\n\ngdp_per_capita\n179.0\n17358.17\n23532.14\n259.03\n6810.11\n125006.02\n\n\nlife_expectancy\n179.0\n72.17\n7.86\n53.00\n73.44\n85.38\n\n\nunemployment_rate\n179.0\n7.25\n5.87\n0.13\n5.50\n37.85\n\n\n\n\n\n\n\nDescription\nGDP per capita has the largest spread (big std and max–min range).\nLife expectancy tends to cluster more tightly.\nUnemployment varies a lot across countries and may reflect economic structure and policy."
+  },
+  {
+    "objectID": "slides.html#main-takeaways",
+    "href": "slides.html#main-takeaways",
+    "title": "World Development Indicators (2022)",
+    "section": "Main Takeaways",
+    "text": "Main Takeaways\nIncome and health are positively related: countries with higher GDP per capita generally have higher life expectancy (log-scale helps show this clearly).\nIncome distribution is highly skewed: the highest-income countries stand out strongly.\nUnemployment varies widely even among countries that look similar by income.\nData source: World Bank WDI (2022 extract) (World Bank 2022) Concept reference: Preston curve (Preston 1975)"
+  },
+  {
+    "objectID": "slides.html#references",
+    "href": "slides.html#references",
+    "title": "World Development Indicators (2022)",
+    "section": "References",
+    "text": "References\n\n\n\n\nPreston, Samuel H. 1975. “The Changing Relation Between Mortality and Level of Economic Development.” Population Studies 29 (2): 231–48.\n\n\nWorld Bank. 2022. “World Development Indicators.” World Bank Open Data."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Assignment=05",
+    "section": "",
+    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site"
+  },
+  {
+    "objectID": "report.html",
+    "href": "report.html",
+    "title": "World Development Indicators (2022): A Quick Exploratory Analysis",
+    "section": "",
+    "text": "This report analyzes a 2022 cross-section of the World Development Indicators (WDI) dataset.\nWe focus on three indicators:\n\nGDP per capita (current US$)\nLife expectancy (years)\nUnemployment rate (% of total labor force)\n\nThe dataset comes from the World Bank’s WDI program (World Bank 2022). We also reference the classic “Preston curve” relationship between income and health outcomes (Preston 1975)."
+  },
+  {
+    "objectID": "report.html#overview",
+    "href": "report.html#overview",
+    "title": "World Development Indicators (2022): A Quick Exploratory Analysis",
+    "section": "",
+    "text": "This report analyzes a 2022 cross-section of the World Development Indicators (WDI) dataset.\nWe focus on three indicators:\n\nGDP per capita (current US$)\nLife expectancy (years)\nUnemployment rate (% of total labor force)\n\nThe dataset comes from the World Bank’s WDI program (World Bank 2022). We also reference the classic “Preston curve” relationship between income and health outcomes (Preston 1975)."
+  },
+  {
+    "objectID": "report.html#data-loading",
+    "href": "report.html#data-loading",
+    "title": "World Development Indicators (2022): A Quick Exploratory Analysis",
+    "section": "2 Data loading",
+    "text": "2 Data loading\n\nimport pandas as pd\nimport numpy as np\n\ndf = pd.read_csv(\"wdi.csv\")\ndf.columns = [c.strip().lower() for c in df.columns]\n\n# Keep only the columns we use in this report\ncols = [\"country\", \"gdp_per_capita\", \"life_expectancy\", \"unemployment_rate\", \"total_population\"]\nd = df[cols].copy()\n\n# Basic cleaning: remove rows missing key values for core analysis\nd_core = d.dropna(subset=[\"gdp_per_capita\", \"life_expectancy\", \"unemployment_rate\"]).copy()\n\nd.shape, d_core.shape\n\n((217, 5), (179, 5))"
+  },
+  {
+    "objectID": "report.html#exploratory-data-analysis",
+    "href": "report.html#exploratory-data-analysis",
+    "title": "World Development Indicators (2022): A Quick Exploratory Analysis",
+    "section": "3 Exploratory Data Analysis",
+    "text": "3 Exploratory Data Analysis\n\n3.1 GDP per capita\n\nd[\"gdp_per_capita\"].describe()\n\ncount       203.000000\nmean      20345.707649\nstd       31308.942225\nmin         259.025031\n25%        2570.563284\n50%        7587.588173\n75%       25982.630050\nmax      240862.182448\nName: gdp_per_capita, dtype: float64\n\n\nCountries vary dramatically in GDP per capita, which motivates using logs.\n\n\n3.2 Life expectancy\n\nd[\"life_expectancy\"].describe()\n\ncount    209.000000\nmean      72.416519\nstd        7.713322\nmin       52.997000\n25%       66.782000\n50%       73.514634\n75%       78.475000\nmax       85.377000\nName: life_expectancy, dtype: float64\n\n\nLife expectancy shows less dispersion than GDP but still meaningful variation.\n\n\n3.3 Unemployment rate\n\nd[\"unemployment_rate\"].describe()\n\ncount    186.000000\nmean       7.268661\nstd        5.827726\nmin        0.130000\n25%        3.500750\n50%        5.537500\n75%        9.455250\nmax       37.852000\nName: unemployment_rate, dtype: float64\n\n\nUnemployment rates show substantial dispersion."
+  },
+  {
+    "objectID": "report.html#visualizations",
+    "href": "report.html#visualizations",
+    "title": "World Development Indicators (2022): A Quick Exploratory Analysis",
+    "section": "4 Visualizations",
+    "text": "4 Visualizations\n\n4.1 GDP per capita vs Life expectancy\n\nimport matplotlib.pyplot as plt\n\nx = d_core[\"gdp_per_capita\"]\ny = d_core[\"life_expectancy\"]\n\n\nfig, ax = plt.subplots()\nax.scatter(x, y)\nax.set_xscale(\"log\")\nax.set_title(\"GDP per Capita vs Life Expectancy (2022)\")\nax.set_xlabel(\"GDP per capita (current US$, log scale)\")\nax.set_ylabel(\"Life expectancy (years)\")\nplt.show()\n\n\n\n\n\n\n\n\n\n\n\nFigure: GDP per capita and life expectancy (log scale).\nSource: World Bank WDI (2022).\n\n\nFigure 1\n\n\n\n\n\n4.2 Top 10 Countries by GDP per Capita\n\ntop10 = d.dropna(subset=[\"gdp_per_capita\"]).sort_values(\"gdp_per_capita\", ascending=False).head(10)\ntop10[[\"country\", \"gdp_per_capita\"]]\n\n\n\n\n\n\n\n\ncountry\ngdp_per_capita\n\n\n\n\n130\nMonaco\n240862.182448\n\n\n114\nLiechtenstein\n187267.132381\n\n\n116\nLuxembourg\n125006.021815\n\n\n21\nBermuda\n123091.123516\n\n\n147\nNorway\n108798.451166\n\n\n93\nIreland\n103983.291336\n\n\n36\nCayman Islands\n96073.763595\n\n\n188\nSwitzerland\n93259.905718\n\n\n171\nSingapore\n88428.702423\n\n\n159\nQatar\n87480.419712\n\n\n\n\n\n\n\n\nfig, ax = plt.subplots()\nax.bar(top10[\"country\"], top10[\"gdp_per_capita\"])\nax.set_title(\"Top 10 Countries by GDP per Capita (2022)\")\nax.set_xlabel(\"Country\")\nax.set_ylabel(\"GDP per capita (current US$)\")\nax.tick_params(axis=\"x\", rotation=60)\nplt.show()\n\n\n\n\n\n\n\n\n\n\n\nFigure: Top 10 countries by GDP per capita.\nSource: World Bank WDI (2022).\n\n\nFigure 2"
+  },
+  {
+    "objectID": "report.html#summary-table",
+    "href": "report.html#summary-table",
+    "title": "World Development Indicators (2022): A Quick Exploratory Analysis",
+    "section": "5 Summary Table",
+    "text": "5 Summary Table\n\nsummary = d_core[[\"gdp_per_capita\", \"life_expectancy\", \"unemployment_rate\"]].describe().T\nsummary = summary[[\"count\", \"mean\", \"std\", \"min\", \"50%\", \"max\"]]\nsummary\n\n\n\n\n\n\n\n\ncount\nmean\nstd\nmin\n50%\nmax\n\n\n\n\ngdp_per_capita\n179.0\n17358.165812\n23532.137393\n259.025031\n6810.114041\n125006.021815\n\n\nlife_expectancy\n179.0\n72.165990\n7.860414\n52.997000\n73.444000\n85.377000\n\n\nunemployment_rate\n179.0\n7.246855\n5.866449\n0.130000\n5.504000\n37.852000\n\n\n\n\n\n\n\n\n\n\nTable 1\n\n\nTable: Descriptive statistics for selected indicators."
+  },
+  {
+    "objectID": "report.html#conclusion",
+    "href": "report.html#conclusion",
+    "title": "World Development Indicators (2022): A Quick Exploratory Analysis",
+    "section": "6 Conclusion",
+    "text": "6 Conclusion\nGDP per capita is strongly associated with life expectancy (see Figure 1).\nThe income distribution is highly skewed (see Figure 2).\nKey statistics are summarized in Table 1."
+  }
+]
