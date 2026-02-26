@@ -1,0 +1,146 @@
+---
+title: "World Development Indicators (2022)"
+subtitle: "A Short Exploratory Data Analysis with Quarto"
+author: "Oliver Xie"
+date: "2026-02-25"
+format:
+  revealjs:
+    theme: dark
+    transition: convex
+    slide-number: true
+    incremental: true
+    center: true
+execute:
+  warning: false
+  message: false
+bibliography: references.bib
+---
+
+## Overview
+
+In this presentation, I analyze a 2022 sample of the World Development Indicators (WDI) dataset from the World Bank [@worldbank_wdi].
+
+**Goals**
+- Load and clean the dataset (`wdi.csv`)
+- Explore a few core development indicators
+- Visualize patterns across countries
+- Summarize results with a small statistics table
+
+---
+
+## Data + Indicators
+
+The dataset contains country-level measurements for 2022.  
+For this mini-analysis, I focus on:
+
+- **GDP per capita** (income level proxy)
+- **Life expectancy** (health outcome)
+- **Unemployment rate** (labor market outcome)
+
+These are commonly used indicators for comparing development outcomes across countries.
+
+```{python}
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+df = pd.read_csv("wdi.csv")
+df.columns = [c.strip().lower() for c in df.columns]
+
+cols = ["country", "gdp_per_capita", "life_expectancy", "unemployment_rate", "total_population"]
+d = df[cols].copy()
+
+# Keep complete cases for the main scatter analysis
+d_core = d.dropna(subset=["gdp_per_capita", "life_expectancy", "unemployment_rate"]).copy()
+
+d.shape, d_core.shape
+```
+
+## Quick Descriptives
+A first step in EDA is checking the distribution and missingness.
+Below are basic summary statistics for the three key indicators.
+
+```{python}
+d[["gdp_per_capita", "life_expectancy", "unemployment_rate"]].describe()
+```
+
+Interpretation
+
+GDP per capita usually has a very wide range across countries.
+
+Life expectancy varies less than income but still meaningfully.
+
+Unemployment rates can differ sharply between countries with similar income.
+
+## Relationship: Income and Health
+Many cross-country comparisons show that higher income tends to be associated with higher life expectancy.
+This is closely related to the classic “Preston curve” idea [@preston1975].
+```{python}
+fig, ax = plt.subplots()
+ax.scatter(d_core["gdp_per_capita"], d_core["life_expectancy"])
+ax.set_xscale("log")
+ax.set_title("GDP per Capita vs Life Expectancy (2022)")
+ax.set_xlabel("GDP per capita (current US$, log scale)")
+ax.set_ylabel("Life expectancy (years)")
+plt.show()
+```
+
+Description
+
+The x-axis is log-scaled so both low- and high-income countries are visible.
+
+The overall pattern is upward: richer countries tend to have higher life expectancy.
+
+There is still large variation, meaning income is not the only factor.
+
+## Distribution: Top 10 by GDP per Capita
+
+Next, I compare the most extreme values by looking at the top 10 countries in GDP per capita.
+```{python}
+top10 = d.dropna(subset=["gdp_per_capita"]).sort_values("gdp_per_capita", ascending=False).head(10)
+
+fig, ax = plt.subplots()
+ax.bar(top10["country"], top10["gdp_per_capita"])
+ax.set_title("Top 10 Countries by GDP per Capita (2022)")
+ax.set_xlabel("Country")
+ax.set_ylabel("GDP per capita (current US$)")
+ax.tick_params(axis="x", rotation=60)
+plt.show()
+```
+
+Description
+
+This plot highlights how concentrated the right tail of the income distribution is.
+
+A small set of countries sit far above the global median.
+
+Summary Table: Key Statistics
+
+This table summarizes the same three indicators using common descriptive stats.
+
+```{python}
+summary = d_core[["gdp_per_capita", "life_expectancy", "unemployment_rate"]].describe().T
+summary = summary[["count", "mean", "std", "min", "50%", "max"]]
+summary = summary.round(2)
+summary
+```
+
+Description
+
+GDP per capita has the largest spread (big std and max–min range).
+
+Life expectancy tends to cluster more tightly.
+
+Unemployment varies a lot across countries and may reflect economic structure and policy.
+
+## Main Takeaways
+Income and health are positively related: countries with higher GDP per capita generally have higher life expectancy (log-scale helps show this clearly).
+
+Income distribution is highly skewed: the highest-income countries stand out strongly.
+
+Unemployment varies widely even among countries that look similar by income.
+
+Data source: World Bank WDI (2022 extract) [@worldbank_wdi]
+Concept reference: Preston curve [@preston1975]
+
+## References

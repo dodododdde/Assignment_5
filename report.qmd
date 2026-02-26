@@ -1,0 +1,127 @@
+---
+title: "World Development Indicators (2022): A Quick Exploratory Analysis"
+author: "Oliver Xie"
+date: "2026-02-25"
+format:
+  html:
+    toc: true
+    number-sections: true
+  pdf:
+    number-sections: true
+bibliography: references.bib
+execute:
+  warning: false
+  message: false
+---
+
+## Overview
+
+This report analyzes a 2022 cross-section of the World Development Indicators (WDI) dataset.  
+We focus on three indicators:
+
+- GDP per capita (current US$)
+- Life expectancy (years)
+- Unemployment rate (% of total labor force)
+
+The dataset comes from the World Bank’s WDI program [@worldbank_wdi]. We also reference the classic “Preston curve” relationship between income and health outcomes [@preston1975].
+
+## Data loading
+
+```{python}
+import pandas as pd
+import numpy as np
+
+df = pd.read_csv("wdi.csv")
+df.columns = [c.strip().lower() for c in df.columns]
+
+# Keep only the columns we use in this report
+cols = ["country", "gdp_per_capita", "life_expectancy", "unemployment_rate", "total_population"]
+d = df[cols].copy()
+
+# Basic cleaning: remove rows missing key values for core analysis
+d_core = d.dropna(subset=["gdp_per_capita", "life_expectancy", "unemployment_rate"]).copy()
+
+d.shape, d_core.shape
+```
+
+
+## Exploratory Data Analysis
+### GDP per capita
+```{python}
+d["gdp_per_capita"].describe()
+```
+
+Countries vary dramatically in GDP per capita, which motivates using logs.
+
+### Life expectancy
+```{python}
+d["life_expectancy"].describe()
+```
+
+Life expectancy shows less dispersion than GDP but still meaningful variation.
+
+### Unemployment rate
+```{python}
+d["unemployment_rate"].describe()
+```
+
+Unemployment rates show substantial dispersion.
+
+## Visualizations
+### GDP per capita vs Life expectancy
+```{python}
+import matplotlib.pyplot as plt
+
+x = d_core["gdp_per_capita"]
+y = d_core["life_expectancy"]
+```
+
+```{python echo=false}
+fig, ax = plt.subplots()
+ax.scatter(x, y)
+ax.set_xscale("log")
+ax.set_title("GDP per Capita vs Life Expectancy (2022)")
+ax.set_xlabel("GDP per capita (current US$, log scale)")
+ax.set_ylabel("Life expectancy (years)")
+plt.show()
+```
+::: {#fig-gdp-life}
+Figure: GDP per capita and life expectancy (log scale).  
+Source: World Bank WDI (2022).
+:::
+
+### Top 10 Countries by GDP per Capita
+```{python}
+top10 = d.dropna(subset=["gdp_per_capita"]).sort_values("gdp_per_capita", ascending=False).head(10)
+top10[["country", "gdp_per_capita"]]
+```
+```{python echo=false}
+fig, ax = plt.subplots()
+ax.bar(top10["country"], top10["gdp_per_capita"])
+ax.set_title("Top 10 Countries by GDP per Capita (2022)")
+ax.set_xlabel("Country")
+ax.set_ylabel("GDP per capita (current US$)")
+ax.tick_params(axis="x", rotation=60)
+plt.show()
+```
+::: {#fig-top10-gdp}
+Figure: Top 10 countries by GDP per capita.  
+Source: World Bank WDI (2022).
+:::
+
+## Summary Table
+```{python}
+summary = d_core[["gdp_per_capita", "life_expectancy", "unemployment_rate"]].describe().T
+summary = summary[["count", "mean", "std", "min", "50%", "max"]]
+summary
+```
+::: {#tbl-summary}
+Table: Descriptive statistics for selected indicators.
+:::
+## Conclusion
+
+GDP per capita is strongly associated with life expectancy (see @fig-gdp-life).  
+The income distribution is highly skewed (see @fig-top10-gdp).  
+Key statistics are summarized in @tbl-summary.
+
+## References
